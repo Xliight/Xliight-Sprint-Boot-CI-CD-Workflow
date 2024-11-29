@@ -1,0 +1,5 @@
+Bonjour ${fullName},
+Nous vous prions de bien vouloir confirmer votre nouvelle numéro de téléphone afin qu’elle soit prise en compte.
+Votre code de validation TicTacSanté est : ${code}
+
+Coordialement.
