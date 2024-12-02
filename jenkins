@@ -92,13 +92,7 @@ pipeline {
               }
           }
       }
-      
-      stage ('Scan OWASP') {
-          steps {
-              dependencyCheck additionalArguments: '--scan ./ ', odcInstallation: 'dp'
-              dependencyCheckPublisher pattern: '**/depenedency-check-report.xml'
-          }
-      }
+
     // stage('Update Deployment File') {
     //     environment {
     //         GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
