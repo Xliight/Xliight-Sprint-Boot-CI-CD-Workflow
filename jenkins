@@ -28,69 +28,27 @@ pipeline {
         git branch: 'main', changelog: false, credentialsId: 'git_token', poll: false, url: 'https://github.com/Xliight/Xliight-Sprint-Boot-CI-CD-Workflow.git'
       }
     }
-    stage('Build and Test') {
-      steps {
-        sh 'mvn clean package'
-      }
-    }
-    stage('Static Code Analysis') {
-
-      steps {
-          script{
-                withSonarQubeEnv(credentialsId: 'sonarr') {
-
-                sh ''' mvn sonar:sonar'''        
-            }
-         }
-        
-      }
-    }
-    
-    stage('Quality Gate') {
-      steps {
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonarr'
-        
-            
-        }
-    }
-    
-    
-    stage('Build & Tag Docker Image') {
-            steps {
-               script {
-                   withDockerRegistry(credentialsId: DOCKER_PASS, toolName: 'docker') {
-                            sh "docker build -t ${IMAGE_NAME} ."
-                            sh "docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
-                    }
-               }
-            }
-        }
-    stage('Push Docker Image') {
-            steps {
-               script {
-                   withDockerRegistry(credentialsId: DOCKER_PASS, toolName: 'docker') {
-                            sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
-                            sh "docker push ${IMAGE_NAME}:latest"
-
-                            
-                    }
-               }
-            }
-    }    
-        
-        stage('Docker Image Scan') {
-            steps {
-                sh "trivy image --format table -o trivy-image-report.html ${IMAGE_NAME}:latest "
-            }
-        }
-
-      stage ('Cleanup Artifacts') {
+    stage('Checkout') {
           steps {
-              script {
-                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                    sh "docker rmi ${IMAGE_NAME}:latest"
-              }
+               sh 'echo done'
           }
+    }
+   
+      stage('DiscordMessage') {
+          steps {
+              discordSend(
+              webhookURL: "https://discord.com/api/webhooks/1313951323116404796/GqaDHcd_-bCUcseTb4RXXKFIUsvpZHy2qp_6nfU-IBNEr1SJhPHhIbr9U6g4cRqPqVNu",
+              discordSend description: 'Status of my Project',
+              title:'Idek Fih'
+              footer: '',
+              image: '',
+              link: env.BUILD_URL,
+              result: currentBuild.currentResult,
+              scmWebUrl: '',
+              thumbnail: '',
+              title: JOB_NAME
+              )
+            }    
       }
 
     // stage('Update Deployment File') {
