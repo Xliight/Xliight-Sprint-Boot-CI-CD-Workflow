@@ -23,7 +23,7 @@ pipeline {
                 }
     }  
       
-    stage('Checkout') {
+    stage('Checkoutd') {
       steps {
         git branch: 'main', changelog: false, credentialsId: 'git_token', poll: false, url: 'https://github.com/Xliight/Xliight-Sprint-Boot-CI-CD-Workflow.git'
       }
