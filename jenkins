@@ -34,21 +34,25 @@ pipeline {
           }
     }
    
-      stage('DiscordMessage') {
-          steps {
-              discordSend(
-              webhookURL: "https://discord.com/api/webhooks/1313951323116404796/GqaDHcd_-bCUcseTb4RXXKFIUsvpZHy2qp_6nfU-IBNEr1SJhPHhIbr9U6g4cRqPqVNu",
-              discordSend description: 'Status of my Project',
-              title:'Idek Fih',
-              footer: '',
-              image: '',
-              link: env.BUILD_URL,
-              result: currentBuild.currentResult,
-              scmWebUrl: '',
-              thumbnail: '',
-              title: JOB_NAME
-              )
-            }    
+    stage('Notify Discord') {
+            steps {
+                script {
+                    def discordWebhookUrl = 'https://discord.com/api/webhooks/1313951323116404796/GqaDHcd_-bCUcseTb4RXXKFIUsvpZHy2qp_6nfU-IBNEr1SJhPHhIbr9U6g4cRqPqVNu'
+
+                    def message = """
+                        {
+                            "content": "Build #${env.BUILD_NUMBER} has finished with status: ${currentBuild.result}",
+                            "username": "Jenkins Bot"
+                        }
+                    """
+                    // Sending POST request to Discord
+                    httpRequest acceptType: 'APPLICATION_JSON', 
+                                contentType: 'APPLICATION_JSON', 
+                                url: discordWebhookUrl, 
+                                httpMode: 'POST', 
+                                requestBody: message
+                }
+            }
       }
 
     // stage('Update Deployment File') {
