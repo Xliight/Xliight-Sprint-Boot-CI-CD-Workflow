@@ -13,8 +13,7 @@ pipeline {
         DOCKER_USER = "xlight7"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
-        //IMAGE_TAG="${RELEASE}-${BUILD_ID}"
-        IMAGE_TAG="1.0.0-33"
+        IMAGE_TAG="${RELEASE}-${BUILD_ID}"
         JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
     }
   
