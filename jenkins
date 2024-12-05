@@ -5,7 +5,8 @@ pipeline {
       jdk 'jdk17'
       maven 'maven3'
   }
-  
+
+
    environment {
         APP_NAME = "ouitripsapp"
         RELEASE = "1.0.0"
