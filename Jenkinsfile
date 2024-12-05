@@ -174,6 +174,7 @@ pipeline {
                   mimeType: 'text/html',
                   attachmentsPattern: 'trivy-image-report.html'
               )
+            }
         }
     }
 }
