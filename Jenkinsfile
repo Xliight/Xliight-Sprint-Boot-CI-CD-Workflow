@@ -101,8 +101,9 @@ pipeline {
     stage("Trigger CD Pipeline") {
             steps {
                 script {
-                   sh 'curl -I -X POST "http://xlight:11eb99d6a4d2ecb26e9fffc8caa41875d0@192.168.1.10:8080/job/CD-OuitripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}" -H "Jenkins-Crumb:899c2cf4a935c24b4117cd049eeb549989734753264c1ed663dcdddd69826a99"'
-
+                     sh '''
+                        curl -I -X POST "http://xlight:11eb99d6a4d2ecb26e9fffc8caa41875d0@192.168.1.10:8080/job/CD-OuitripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}" -H "Jenkins-Crumb:899c2cf4a935c24b4117cd049eeb549989734753264c1ed663dcdddd69826a99"
+                    '''
                 }
             }
     }
