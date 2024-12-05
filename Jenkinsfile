@@ -25,7 +25,7 @@ pipeline {
                 cleanWs()
                 }
     }  
-    /**  
+     
     stage('Checkout') {
       steps {
         git branch: 'main', changelog: false, credentialsId: 'git_token', poll: false, url: 'https://github.com/Xliight/Xliight-Sprint-Boot-CI-CD-Workflow.git'
@@ -95,7 +95,7 @@ pipeline {
               }
           }
     }
-   **/
+   
 
      
     stage("Trigger CD Pipeline") {
@@ -116,8 +116,8 @@ pipeline {
                 def buildStatus = currentBuild.result ?: 'SUCCESS'
                 def message = """
                     {
-                        "content": "Build #${env.BUILD_NUMBER} CD has finished with status: ${buildStatus} ",
-                        "username": "Jenkins Bot"
+                        "content": "Build #${env.BUILD_NUMBER} CI has finished with status: ${buildStatus} ",
+                        "username": "Jenkins Bot CI"
                     }
                 """
                 httpRequest acceptType: 'APPLICATION_JSON', 
@@ -133,8 +133,8 @@ pipeline {
                 def buildStatus = currentBuild.result ?: 'FAILURE'
                 def message = """
                     {
-                        "content": "Build #${env.BUILD_NUMBER} CD has Failed with status: ${buildStatus} ",
-                        "username": "Jenkins Bot"
+                        "content": "Build #${env.BUILD_NUMBER} CI has Failed with status: ${buildStatus} ",
+                        "username": "Jenkins Bot CI"
                     }
                 """
                 httpRequest acceptType: 'APPLICATION_JSON', 
