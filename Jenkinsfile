@@ -100,7 +100,7 @@ pipeline {
             steps {
                 script {
                      sh '''
-                        curl -I -X POST "http://xlight:11c877dcfe8309685b46ff9fae2d8b9037@192.168.1.10:8080/job/CD-OuitripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=1.0.0-6" -H "Jenkins-Crumb:b23a9c7d4a85941cd319c3f078f533111d19eab71cfe1ac32983579b9ebfb0ca"
+                        curl -I -X POST "http://xlight:11c877dcfe8309685b46ff9fae2d8b9037@192.168.1.10:8080/job/CD-OuitripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=                        curl -I -X POST "http://xlight:11eb99d6a4d2ecb26e9fffc8caa41875d0@192.168.1.10:8080/job/CD-OuitripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}" -H "Jenkins-Crumb:899c2cf4a935c24b4117cd049eeb549989734753264c1ed663dcdddd69826a99"" -H "Jenkins-Crumb:b23a9c7d4a85941cd319c3f078f533111d19eab71cfe1ac32983579b9ebfb0ca"
                     '''
                 }
             }
