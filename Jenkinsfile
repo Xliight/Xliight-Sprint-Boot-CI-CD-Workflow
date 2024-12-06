@@ -47,9 +47,13 @@ pipeline {
         
       }
     }
-    
-    
-    
+    stage('Quality Gate') {
+      steps {
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonarr'
+        
+            
+        }
+    }
     
     stage('Build & Tag Docker Image') {
             steps {
