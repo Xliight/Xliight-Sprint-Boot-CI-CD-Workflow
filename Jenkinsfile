@@ -50,7 +50,7 @@ pipeline {
     
     stage('Quality Gate') {
       steps {
-                waitForQualityGate abortPipeline: false, credentialsId: 'sonarr'
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonarr'
         
             
         }
