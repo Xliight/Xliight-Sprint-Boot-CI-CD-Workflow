@@ -1,10 +1,10 @@
 mvn clean verify sonar:sonar \
-  -Dsonar.login=amostakir \
-  -Dsonar.password=Pcgame@06 \
-  -Dsonar.projectKey=OuiTrips_CoREST \
-  -Dsonar.projectName='OuiTrips_CoREST' \
-  -Dsonar.host.url=https://sonar.e-ambition.app \
-  -Dsonar.token=sqp_d808199ca4fd7e363a0c795c1847c0b0749671f2 \
+  -Dsonar.login=admin \
+  -Dsonar.password=Pcgamelol@06 \
+  -Dsonar.projectKey=APPs_CoREST \
+  -Dsonar.projectName='APPs_CoREST' \
+  -Dsonar.host.url=http://192.168.1.20:9000 \
+  -Dsonar.token=squ_4dabdef5137a19e8e40a392f91e91f40739d115d \
   -Dsonar.exclusions="**/com/ouitrips/app/googlemapsservice/**","**/com/ouitrips/app/osrmservice/**"
 
 read -p "Press any key"
