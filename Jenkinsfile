@@ -48,13 +48,13 @@ pipeline {
       }
     }
     
-    // stage('Quality Gate') {
-    //   steps {
-    //             waitForQualityGate abortPipeline: false, credentialsId: 'sonarr'
+    stage('Quality Gate') {
+      steps {
+                waitForQualityGate abortPipeline: false, credentialsId: 'sonarr'
         
             
-    //     }
-    // }
+        }
+    }
     
     stage('Build & Tag Docker Image') {
             steps {
@@ -100,7 +100,8 @@ pipeline {
             steps {
                 script {
                      sh '''
-                        curl -I -X POST "http://xlight:11c877dcfe8309685b46ff9fae2d8b9037@192.168.1.10:8080/job/CD-TripsApp/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}" -H "Jenkins-Crumb:b23a9c7d4a85941cd319c3f078f533111d19eab71cfe1ac32983579b9ebfb0ca"
+                        curl -I -X POST "http://xlight:11d5ed8e74432c154e0001c43678872552@192.168.1.10:8080/job/CD-App%20Pipeline/buildWithParameters?token=gitops-token&IMAGE_TAG=${IMAGE_TAG}" -H "Jenkins-Crumb:04af1597a21004234e8bf778a76b167b6edc153859c8d78671656abd00b782e2"
+
                     '''
                 }
             }
